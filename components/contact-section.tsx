@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { MapPin, Phone, Mail, Clock, MessageCircle, Send } from "lucide-react"
+import { toast } from "sonner"
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -17,11 +18,38 @@ export function ContactSection() {
     message: "",
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle form submission
-    console.log("Form submitted:", formData)
+ const [loading, setLoading] = useState(false)
+
+
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault()
+  setLoading(true)
+  toast.loading("Sending your message...")
+
+  try {
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    })
+
+    toast.dismiss() 
+
+    if (res.ok) {
+      toast.success("✅ Message sent successfully!")
+      setFormData({ name: "", email: "", message: "" })
+    } else {
+      const data = await res.json()
+      toast.error(`❌ Failed to send message: ${data.error || "Unknown error"}`)
+    }
+  } catch (err) {
+    console.error("Error sending message:", err)
+    toast.dismiss()
+    toast.error("⚠️ Something went wrong. Please try again.")
+  } finally {
+    setLoading(false)
   }
+}
 
   const contactInfo = [
     {
@@ -103,13 +131,13 @@ export function ContactSection() {
             {/* Quick Contact Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Button className="flex-1" size="lg" asChild>
-                <a href="https://wa.me/251909196651" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/+251909196651" target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="w-5 h-5 mr-2" />
                   WhatsApp
                 </a>
               </Button>
               <Button className="flex-1 bg-transparent" size="lg" variant="outline" asChild>
-                <a href="https://t.me/+251909196651" target="_blank" rel="noopener noreferrer">
+                <a href="https://t.me/@canaanpharmacy" target="_blank" rel="noopener noreferrer">
                   <Send className="w-5 h-5 mr-2" />
                   Telegram
                 </a>
@@ -156,10 +184,10 @@ export function ContactSection() {
                 />
               </div>
 
-              <Button type="submit" size="lg" className="w-full">
-                <Send className="w-5 h-5 mr-2" />
-                Send Message
-              </Button>
+             <Button type="submit" size="lg" className="w-full" disabled={loading}>
+              {loading ? "Sending..." : <><Send className="w-5 h-5 mr-2" /> Send Message</>}
+             </Button>
+
             </form>
           </Card>
         </div>
@@ -168,7 +196,7 @@ export function ContactSection() {
         <div className="mt-16 max-w-6xl mx-auto">
           <Card className="overflow-hidden bg-card/40 backdrop-blur-md border-white/10 shadow-xl">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.5!2d38.7!3d9.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOcKwMDAnMDAuMCJOIDM4wrA0MicwMC4wIkU!5e0!3m2!1sen!2set!4v1234567890"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.790612053685!2d38.85116437413459!3d9.009710290223513!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b9b08b638ee25%3A0xe248ba2caabea96!2sCanaan%20Pharmacy!5e0!3m2!1sen!2set!4v1728375060274!5m2!1sen!2set"
               width="100%"
               height="400"
               style={{ border: 0 }}

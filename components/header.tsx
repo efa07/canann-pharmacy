@@ -10,13 +10,30 @@ import { ThemeToggle } from "@/components/theme-toggle"
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [activeLink, setActiveLink] = useState("#home")
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20)
     }
+
+    // Function to update the active link based on the current hash
+    const handleHashChange = () => {
+      const currentHash = window.location.hash || '#home';
+      setActiveLink(currentHash);
+    }
+
+    // Set initial active link
+    handleHashChange();
+
     window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
+    // Listen for hash changes (e.g., when clicking a nav link)
+    window.addEventListener("hashchange", handleHashChange)
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      window.removeEventListener("hashchange", handleHashChange)
+    }
   }, [])
 
   const navLinks = [
@@ -29,18 +46,18 @@ export function Header() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/70 backdrop-blur-xl shadow-lg border-b border-white/10" : "bg-transparent"
+        isScrolled ? "bg-background/80 backdrop-blur-xl shadow-lg border-b border-white/10" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <Link href="#home" className="flex items-center gap-3 group">
-            <div className="relative w-14 h-14 transition-transform group-hover:scale-105 rounded ">
+            <div className="relative w-14 h-14 transition-transform group-hover:scale-105 rounded-full overflow-hidden border border-white/20">
               <Image
                 src="/canaan-pharmacy-logo.png"
                 alt="Canaan Pharmacy Logo"
                 fill
-                className="object-contain"
+                className="object-contain rounded-md"
                 priority
               />
             </div>
@@ -51,16 +68,23 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
+          <nav className="hidden md:flex items-center gap-1">
+            {navLinks.map((link) => {
+              const isActive = activeLink === link.href
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`text-base font-medium rounded-full px-4 py-2 transition-all duration-300 ${
+                    isActive 
+                      ? "bg-primary text-white shadow-md" 
+                      : "text-foreground/80 hover:text-primary hover:bg-white/10"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              )
+            })}
           </nav>
 
           {/* Desktop CTA */}
@@ -89,19 +113,30 @@ export function Header() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-6 border-t border-white/10 bg-background/70 backdrop-blur-xl">
-            <nav className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-base font-medium text-foreground/80 hover:text-primary transition-colors px-4 py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              ))}
-              <div className="flex flex-col gap-3 px-4 pt-4 border-t border-white/10">
+          <div className="md:hidden py-6 border-t border-white/10 bg-background/80 backdrop-blur-xl">
+            <nav className="flex flex-col gap-1">
+              {navLinks.map((link) => {
+                const isActive = activeLink === link.href
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    // UPDATED: Applied active link styling to mobile menu
+                    className={`text-base font-medium transition-colors px-4 py-2 rounded-lg mx-2 ${
+                      isActive 
+                        ? "bg-primary text-white shadow-sm" 
+                        : "text-foreground/80 hover:text-primary hover:bg-white/10"
+                    }`}
+                    onClick={() => {
+                      setActiveLink(link.href)
+                      setIsMobileMenuOpen(false)
+                    }}
+                  >
+                    {link.label}
+                  </Link>
+                )
+              })}
+              <div className="flex flex-col gap-3 px-4 pt-4 border-t border-white/10 mx-2">
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-medium text-foreground/80">Theme</span>
                   <ThemeToggle />

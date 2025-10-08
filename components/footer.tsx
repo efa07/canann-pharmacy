@@ -116,7 +116,7 @@ export function Footer() {
                 WhatsApp
               </a>
               <a
-                href="https://t.me/+251909196651"
+                href="https://t.me/@canaanpharmacy"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-background/70 hover:text-background transition-colors"
