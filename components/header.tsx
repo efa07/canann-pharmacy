@@ -35,7 +35,7 @@ export function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <Link href="#home" className="flex items-center gap-3 group">
-            <div className="relative w-14 h-14 transition-transform group-hover:scale-105">
+            <div className="relative w-14 h-14 transition-transform group-hover:scale-105 rounded ">
               <Image
                 src="/canaan-pharmacy-logo.png"
                 alt="Canaan Pharmacy Logo"

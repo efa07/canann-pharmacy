@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { MapPin, Phone, Mail, Clock } from "lucide-react"
-
+import Image from "next/image"
 export function Footer() {
   const currentYear = new Date().getFullYear()
 
@@ -12,7 +12,15 @@ export function Footer() {
           <div>
             <div className="flex items-center gap-3 mb-4">
               <div className="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center">
-                <span className="text-2xl font-bold text-primary-foreground">C</span>
+              <div className="relative w-14 h-14 transition-transform group-hover:scale-105 rounded ">
+              <Image
+                src="/canaan-pharmacy-logo.png"
+                alt="Canaan Pharmacy Logo"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
               </div>
               <div className="flex flex-col">
                 <span className="text-lg font-bold leading-tight">Canaan Pharmacy</span>
