@@ -19,7 +19,7 @@ const robotoMono = Roboto_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Canaan Pharmacy - People First. Always. | Addis Ababa",
+  title: "Canaan Pharmacy",
   description:
     "For over 25 years, Canaan Pharmacy has been a trusted healthcare partner in Addis Ababa, Ethiopia. Quality medications, expert advice, and community care.",
   keywords: "pharmacy, Addis Ababa, Ethiopia, medications, healthcare, Canaan Pharmacy",
