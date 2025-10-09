@@ -18,28 +18,58 @@ const robotoMono = Roboto_Mono({
   display: "swap",
 })
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Canaan Pharmacy",
-  description:
-    "For over 25 years, Canaan Pharmacy has been a trusted healthcare partner in Addis Ababa, Ethiopia. Quality medications, expert advice, and community care.",
-  keywords: "pharmacy, Addis Ababa, Ethiopia, medications, healthcare, Canaan Pharmacy",
+  description: "Trusted pharmacy in Addis Ababa for 25+ years, providing quality healthcare and personalized service.",
+  keywords: [
+  "Pharmacy in Addis Ababa",
+  "Canaan Pharmacy",
+  "Healthcare Ethiopia",
+  "Pharmacy near me",
+  "Best pharmacy in Ethiopia",
+  "Addis Ababa pharmacy",
+  "Online pharmacy Ethiopia",
+  "Prescription refill Addis Ababa",
+  "Pharmaceutical services Ethiopia",
+  "Trusted pharmacy Addis Ababa",
+  "Medicine delivery Addis Ababa",
+  "Generic medicines Ethiopia",
+  "Affordable healthcare Ethiopia",
+  "Pharmacist consultation Ethiopia",
+  "Health and wellness Addis Ababa",
+  "Buy medicine online Ethiopia",
+  "Canaan Pharmacy Summit",
+  "Summit pharmacy Addis Ababa",
+  "Medical supplies Ethiopia",
+  "Over-the-counter drugs Ethiopia"
+],
+
   openGraph: {
-    title: "Canaan Pharmacy - People First. Always.",
-    description: "Trusted healthcare partner in Addis Ababa for over 25 years",
+    title: "Canaan Pharmacy",
+    description: "People First. Always.",
+    url: "https://canaanpharmacy.com.et",
+    siteName: "Canaan Pharmacy",
+    images: [
+      {
+        url: "/canaan-pharmacy-logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Canaan Pharmacy",
+      },
+    ],
+    locale: "en_US",
     type: "website",
   },
-  icons: {
-  icon: [
-    { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-    { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-    { url: '/favicon.ico', sizes: 'any' },
-  ],
-  apple: '/apple-touch-icon.png',
-  shortcut: '/favicon.ico',
-},
-
-   
-}
+  twitter: {
+    card: "summary_large_image",
+    title: "Canaan Pharmacy",
+    description: "People First. Always.",
+    images: ["/canaan-pharmacy-logo.png"],
+  },
+  alternates: {
+    canonical: "https://canaanpharmacy.com.et",
+  },
+};
 
 export default function RootLayout({
   children,
