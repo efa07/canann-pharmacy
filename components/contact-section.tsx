@@ -69,8 +69,8 @@ const handleSubmit = async (e: React.FormEvent) => {
     {
       icon: Mail,
       title: "Email Us",
-      content: "canaanpharmacymain@gmail.com",
-      link: "mailto:canaanpharmacymain@gmail.com",
+      content: "info@canaanpharmacy.com.et",
+      link: "mailto:info@canaanpharmacy.com.et",
       linkText: "Send Email",
     },
     {

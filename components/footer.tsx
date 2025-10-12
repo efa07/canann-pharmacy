@@ -67,10 +67,10 @@ export function Footer() {
               <div className="flex items-start gap-3">
                 <Mail className="w-4 h-4 mt-0.5 flex-shrink-0 text-primary" />
                 <a
-                  href="mailto:canaanpharmacymain@gmail.com"
+                  href="mailto:info@canaanpharmacy.com.et"
                   className="text-sm text-background/70 hover:text-background transition-colors break-all"
                 >
-                  canaanpharmacymain@gmail.com
+                  info@canaanpharmacy.com.et
                 </a>
               </div>
             </div>
