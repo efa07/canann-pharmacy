@@ -15,7 +15,7 @@ export async function POST(req: Request) {
       secure: true,
       auth: {
         user: "info@canaanpharmacy.com.et",
-        pass: process.env.ZOHO_APP_PASSWORD, // not your Zoho login password!
+        pass: process.env.ZOHO_APP_PASSWORD, // your Zoho app password
       },
     });
 
@@ -29,6 +29,17 @@ Name: ${name}
 Email: ${email}
 Message:
 ${message}
+      `, // plain-text fallback
+      html: `
+        <div style="font-family: Arial, sans-serif; line-height: 1.5; color: #333;">
+          <h2 style="color: #2F4F4F;">📬 New Contact Message</h2>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Message:</strong></p>
+          <p style="padding: 10px; background: #f9f9f9; border-radius: 5px;">${message}</p>
+          <hr>
+          <p style="font-size: 12px; color: #888;">This message was sent from your website contact form.</p>
+        </div>
       `,
     };
 
