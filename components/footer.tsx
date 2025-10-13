@@ -115,14 +115,14 @@ export function Footer() {
               >
                 WhatsApp
               </a>
-              <a
-                href="https://t.me/@canaanpharmacy"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-background/70 hover:text-background transition-colors"
-              >
-                Telegram
-              </a>
+            <a
+    href="https://t.me/canaanpharmacy"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-sm text-background/70 hover:text-background transition-colors"
+>
+    Telegram
+</a>
               <span className="text-sm text-background/70">TikTok & YouTube (Coming Soon)</span>
             </div>
           </div>
