@@ -137,7 +137,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                 </a>
               </Button>
               <Button className="flex-1 bg-transparent" size="lg" variant="outline" asChild>
-                <a href="https://t.me/@canaanpharmacy" target="_blank" rel="noopener noreferrer">
+                <a href="https://t.me/canaanpharmacy" target="_blank" rel="noopener noreferrer">
                   <Send className="w-5 h-5 mr-2" />
                   Telegram
                 </a>
